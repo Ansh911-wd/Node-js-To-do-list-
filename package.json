@@ -1,0 +1,25 @@
+{
+  "name": "to-do-list-project",
+  "version": "1.0.0",
+  "description": "node js project",
+  "homepage": "https://github.com/Ansh911-wd/Node-js-To-do-list-#readme",
+  "bugs": {
+    "url": "https://github.com/Ansh911-wd/Node-js-To-do-list-/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ansh911-wd/Node-js-To-do-list-.git"
+  },
+  "license": "ISC",
+  "author": "ansh kr singh",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "ejs": "^5.0.1",
+    "express": "^5.2.1",
+    "nodemon": "^3.1.14"
+  }
+}
