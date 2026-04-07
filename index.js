@@ -1,10 +1,24 @@
-import express from 'express'
+import express, { urlencoded } from 'express'
 import path from 'path'
 const app = express();
 const publicPath = path.resolve('public')
 app.use(express.static(publicPath))
+import { MongoClient } from 'mongodb';
 
 app.set("view engine",'ejs')
+const dbName="node-project"
+const collectionName="todo"
+const url= "mongodb://localhost:27017"
+const client=new MongoClient(url)
+
+const connection= async()=>{
+    const connect= await client.connect();
+    return  await connect.db(dbName)
+
+}
+ app.use(express.urlencoded({extended:false}))
+
+
 
 app.get("/",(req,resp)=>{
     resp.render("list")
@@ -18,7 +32,16 @@ app.get("/update",(req,resp)=>{
 app.post("/update",(req,resp)=>{
     resp.redirect("/")
 })
-app.post("/add",(req,resp)=>{
-    resp.redirect("update")
+app.post("/add",async(req,resp)=>{
+    const db = await connection();
+    const collection= db.collection(collectionName);
+    const result = await collection.insertOne(req.body);
+    if(result){
+        resp.redirect("/");
+    }
+    else{
+        resp.redirect("/add");
+    }
+    resp.redirect("/")
 })
-app.listen(3200)
+app.listen(30000)
