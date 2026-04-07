@@ -44,4 +44,4 @@ app.post("/add",async(req,resp)=>{
     }
     resp.redirect("/")
 })
-app.listen(30000)
+app.listen(2500)
